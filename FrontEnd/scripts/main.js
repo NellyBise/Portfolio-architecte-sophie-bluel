@@ -4,28 +4,30 @@ import {
   cacherGestion,
 } from "./modalDisplay.js";
 
+export const url ="http://localhost:5678/api/";
+
 //récupération des photos et catégories
 let photos = [];
 let categories = [];
 try {
-  const reponse = await fetch("http://localhost:5678/api/works");
+  const reponse = await fetch(url+"works");
   photos = await reponse.json();
-  const cat = await fetch("http://localhost:5678/api/categories");
-  categories = await cat.json();
 } catch (error) {
   const affichageErreur = document.createElement("p");
-  affichageErreur.classList = "erreur";
   affichageErreur.innerText = "Affichage des projets impossible - " + error;
+  affichageErreur.id = "erreurMessage"
   document.querySelector(".filtres").append(affichageErreur);
 }
 
 //Création de la galerie projets et de celle du mode édition
 const gallery = document.querySelector(".gallery");
 const miniatures = document.querySelector(".miniatures");
-genererPhotos(photos, gallery, true);
-genererPhotos(photos, miniatures, false);
+genererPhotos(photos, gallery);
+genererPhotos(photos, miniatures);
 
 //Création des boutons filtres et des option du formulaire d'ajout
+const cat = await fetch(url+"categories");
+categories = await cat.json();
 filtres();
 
 //si un token est enregistré, modification de la page d'accueil (barre noire, bouton modifier et logout)
@@ -34,15 +36,14 @@ const token = JSON.parse(valeurToken);
 if (valeurToken) {
   pageEdition();
   initAddEventListenerGestion();
+  //appel des fonctions de supression ou ajout des photos
+  suppression();
+  previewPhoto();
+  envoiPhoto();
+  //suppression du token si déconnection
+  suppressionToken();
 }
 
-//suppression du token si déconnection
-suppressionToken();
-
-//appel des fonctions de supression ou ajout des photos
-suppression();
-previewPhoto();
-envoiPhoto();
 
 // FONCTIONS UTILISEES
 
@@ -51,7 +52,7 @@ envoiPhoto();
  * @param {*} photos
  * @param {*} location localisation de la galerie : accueil ou fenêtre modale
  */
-export function genererPhotos(photos, location) {
+function genererPhotos(photos, location) {
   for (let i = 0; i < photos.length; i++) {
     const fichePhoto = photos[i];
 
@@ -84,7 +85,7 @@ export function genererPhotos(photos, location) {
 
 //fonction pour rafraîchir les affichage des galeries
 async function galleryRefresh(photos) {
-  const reponse = await fetch("http://localhost:5678/api/works");
+  const reponse = await fetch(url+"works");
   photos = await reponse.json();
   const gallery = document.querySelector(".gallery");
   document.querySelector(".gallery").innerHTML = "";
@@ -220,7 +221,7 @@ function suppression() {
 
 // fonction pour supprimer la photo demandée et actualiser l'affichage des 2 galeries
 function supprimer(i) {
-  fetch("http://localhost:5678/api/works/" + i, {
+  fetch(url+"works/" + i, {
     method: "DELETE",
     headers: {
       "Content-type": "application/json",
@@ -232,9 +233,9 @@ function supprimer(i) {
       galleryRefresh(photos);
     } else {
       const affichageErreur = document.createElement("p");
-      affichageErreur.classList = "erreur";
       affichageErreur.innerText =
         "Suppression impossible : " + response.statusText;
+      affichageErreur.id = "erreurMessage";
       document.querySelector(".gestion h3").append(affichageErreur);
     }
   });
@@ -264,10 +265,6 @@ async function envoiPhoto() {
       const photo = document.getElementById("photo").files[0];
       formatCheck(photo);
       sizeCheck(photo);
-      const titre = document.getElementById("titre").value;
-      titleCheck(titre);
-      const categorie = document.getElementById("categorie").value;
-      categoryCheck(categorie);
       const formData = new FormData();
       formData.append("image", photo);
       formData.append("title", titre);
@@ -283,7 +280,7 @@ async function envoiPhoto() {
 
 // Fonction pour envoyer la photo et mettre à jour l'&affichage des galeries
 async function formPost(formData) {
-  await fetch("http://localhost:5678/api/works", {
+  await fetch(url+"works", {
     method: "POST",
     headers: {
       Authorization: "Bearer " + token,
@@ -325,22 +322,7 @@ champ3.addEventListener('input', verifierChampsRemplis);
 // Vérifier les champs au chargement de la page
 verifierChampsRemplis();
 
-
-
-
-
-
-//fonctions de vérification des champs
-function titleCheck(titre) {
-  if (titre === "") {
-    throw new Error("le champ titre est obligatoire.");
-  }
-}
-function categoryCheck(categorie) {
-  if (categorie === "") {
-    throw new Error("le champ catégorie est obligatoire.");
-  }
-}
+//fonctions de vérification de l'image
 function sizeCheck(photo) {
   if (photo.size / 1024 > 4096) {
     throw new Error("La taille de l'image est trop grande.");
@@ -358,8 +340,8 @@ function ErrorMessage(erreur) {
   const erreurAjout = document.querySelector(".erreurAjout");
   if (!erreurAjout) {
     const affichageErreur = document.createElement("p");
-    affichageErreur.classList = "erreurAjout";
     affichageErreur.innerText = erreur;
+    affichageErreur.id = "erreurMessage"
     document.querySelector(".fenetreAjout h3").append(affichageErreur);
   }
   erreurAjout.innerText = erreur;

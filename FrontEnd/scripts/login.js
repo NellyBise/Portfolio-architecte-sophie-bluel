@@ -1,3 +1,6 @@
+const url ="http://localhost:5678/api/";
+
+
 //EventListener du login
 let login = document.querySelector("#loginForm");
 login.addEventListener("submit", (event) => {
@@ -11,9 +14,10 @@ login.addEventListener("submit", (event) => {
 async function loginGestion() {
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
+
   // Envoi des id avec la fonction fetch
   try {
-    const reponse = await fetch("http://localhost:5678/api/users/login", {
+    const reponse = await fetch(url + "users/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

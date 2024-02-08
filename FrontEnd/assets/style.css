@@ -176,11 +176,10 @@ h2 {
 	color: #1D6154
 }
 
-.erreur,
-.erreurAjout {
-	margin: 30px;
-	font-size: 20px;
-	color: red;
+.gestion h3 {
+	font-size: 30px;
+	margin-top: 10px;
+	margin-bottom: 46px;
 }
 
 nav ul {
@@ -189,7 +188,6 @@ nav ul {
 	justify-content: space-between;
 	list-style-type: none;
 	width: 320px;
-
 }
 
 nav li a {
@@ -211,12 +209,112 @@ li img {
 	height: 22px;
 }
 
+#erreurMessage {
+	color: red;
+	text-align: center;
+	font-weight: 700;
+	font-size: 18px;
+	margin-top: 10px;
+}
+
+/***************** inputs ************************/
+#contact input,#login input,.gestion input,select {
+	height: 50px;
+	font-size: 14px;
+	font-weight: 400;
+	color: #444444;
+	padding-left: 16px;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#contact label,
+#login label,
+.gestion label {
+	margin: 2em 0 1em 0;
+	font-weight: 500;
+	color: #3D3D3D
+}
+
+#contact textarea {
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#contact input:-webkit-autofill,#login input:-webkit-autofill,.gestion input:-webkit-autofill {
+	-webkit-box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09), 0 0 0 1000px white inset;
+}
+
+/*******************buttons***********************/
+#contact input[type="submit"],
+#login input[type="submit"],
+#ajoutPhoto,
+.supprimer button,
+.gestion input[type="submit"],
+input[type="file"]+label {
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin: 2em auto;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px;
+	height: 36px;
+	border-style: none;
+}
+
+#contact input[type="submit"]:hover,
+#login input[type="submit"]:hover,
+#ajoutPhoto:hover,
+.supprimer button:hover,
+.gestion input[type="submit"]:hover {
+	background-color: #0E2F28;
+	cursor: pointer;
+}
+
 button:hover {
 	cursor: pointer;
 }
 
-/****************** introduction **************/
+/******* Forms **********/
+#contact {
+	width: 379px;
+	margin: auto;
+}
 
+#login {
+	width: 379px;
+	margin: auto;
+	margin-top: 150px;
+}
+
+#contact>*,
+#login>* {
+	text-align: center;
+
+}
+
+#contact h2,
+#login h2 {
+	margin-bottom: 20px;
+}
+
+#contact form,
+#login form,
+.gestion form {
+	text-align: left;
+	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+}
+
+.oubli {
+	text-decoration: underline;
+	margin-bottom: 355px;
+}
+
+/****************** introduction **************/
 #introduction {
 	display: flex;
 	align-items: center;
@@ -245,8 +343,6 @@ button:hover {
 }
 
 /****************** portfolio **************/
-
-
 #portfolio button {
 	font-family: 'Syne';
 	font-weight: 700;
@@ -254,12 +350,10 @@ button:hover {
 	color: #1D6154;
 	background-color: transparent;
 	min-width: 100px;
-	text-align: center;
 	border-radius: 60px;
 	border: solid 1px #1D6154;
 	padding: 9px;
 	margin: 0 5px 0 5px;
-
 }
 
 #portfolio button:hover {
@@ -288,12 +382,13 @@ button:hover {
 .gallery img {
 	width: 100%;
 }
-figcaption{
+
+figcaption {
 	font-size: 13px;
-	margin-top:7px;
+	margin-top: 7px;
 }
 
-/***************mode édition ********************/
+/*************** Edition mode ********************/
 
 .barreEdition {
 	width: 100vw;
@@ -349,134 +444,6 @@ figcaption{
 	margin-top: 139px;
 }
 
-/******* formulaires contact, login et ajout photo **********/
-
-#contact {
-	width: 379px;
-	margin: auto;
-}
-
-#login {
-	width: 379px;
-	margin: auto;
-	margin-top: 150px;
-}
-
-#contact>*,
-#login>* {
-	text-align: center;
-
-}
-
-#contact h2,
-#login h2 {
-	margin-bottom: 20px;
-}
-
-#contact form,
-#login form,
-.gestion form {
-	text-align: left;
-	margin-top: 30px;
-	display: flex;
-	flex-direction: column;
-}
-
-#erreurMessage {
-	color: red;
-	text-align: center;
-	font-weight: 700;
-}
-
-.oubli {
-	text-decoration: underline;
-	margin-bottom: 355px;
-}
-
-/***************** input************************/
-#contact input,
-#login input,
-.gestion input,
-select {
-	height: 50px;
-	font-size: 14px;
-	font-weight: 400;
-	color: #444444;
-	padding-left: 16px;
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-}
-
-#contact label,
-#login label,
-.gestion label {
-	margin: 2em 0 1em 0;
-	font-weight: 500;
-	color: #3D3D3D
-}
-
-#contact textarea {
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-}
-
-input:-webkit-autofill{
-    -webkit-box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09), 0 0 0 1000px white inset;
-}
-
-
-/*******************boutons***********************/
-#contact input[type="submit"],
-#login input[type="submit"],
-#ajoutPhoto,
-.supprimer button,
-.gestion input[type="submit"],
-input[type="file"]+label {
-	font-family: 'Syne';
-	font-weight: 700;
-	color: white;
-	background-color: #1D6154;
-	margin: 2em auto;
-	width: 180px;
-	text-align: center;
-	border-radius: 60px;
-	height: 36px;
-	border-style: none;
-}
-
-#contact input[type="submit"]:hover,
-#login input[type="submit"]:hover,
-#ajoutPhoto:hover,
-.supprimer button:hover,
-.gestion input[type="submit"]:hover {
-	background-color: #0E2F28;
-	cursor: pointer;
-}
-
-
-
-
-/****************** Footer ****************/
-footer {
-	width: 100vw;
-	position: relative;
-	left: 50%;
-	transform: translateX(-50%);
-	background-color: #FFFFFF;
-}
-
-footer nav {
-	display: flex;
-	justify-content: flex-end;
-	padding: 2em 0;
-	margin: auto;
-	max-width: 1200px;
-}
-
-footer nav ul {
-	align-items: center;
-	width: auto;
-}
 
 /************* Fenetre de gestion ou ajout ************/
 .fenetreGestion,
@@ -489,7 +456,7 @@ footer nav ul {
 	height: 100%;
 	width: 100%;
 	top: 0px;
-	left: 0px;
+	left:0px;
 	text-align: center;
 }
 
@@ -498,12 +465,6 @@ footer nav ul {
 	height: 688px;
 	background: white;
 	border-radius: 10px;
-}
-
-.gestion h3 {
-	font-size: 30px;
-	margin-top: 10px;
-	margin-bottom: 46px;
 }
 
 .nav {
@@ -531,7 +492,6 @@ footer nav ul {
 .gestion input[type="submit"] {
 	width: 237px;
 	margin-top: 38px;
-	margin-bottom: 45px;
 }
 
 /**********partie suppression photo***********/
@@ -570,7 +530,6 @@ footer nav ul {
 
 
 /**********partie ajout photo***********/
-
 .gestion form {
 	padding-left: 105px;
 	padding-right: 105px;
@@ -610,7 +569,7 @@ input[type="file"]+label {
 }
 
 .preview {
-	height:169px;
+	height: 169px;
 }
 
 .ajoutPhoto i {
@@ -640,7 +599,7 @@ select {
 	border-right: inset 20px transparent;
 }
 
-hr{
+hr {
 	border: solid 1px #B3B3B3;
 	width: 100%;
 	margin: 47px 0 0 0;
@@ -667,3 +626,23 @@ hr{
 	width: 20%
 }
 
+/****************** Footer ****************/
+footer {
+	width: 100vw;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #FFFFFF;
+}
+
+footer nav {
+	display: flex;
+	justify-content: flex-end;
+	padding: 2em 0;
+	margin: auto;
+	max-width: 1200px;
+}
+
+footer nav ul {
+	width: auto;
+}

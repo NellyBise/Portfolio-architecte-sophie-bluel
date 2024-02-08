@@ -1,9 +1,6 @@
 const fenetreGestion = document.querySelector(".fenetreGestion");
 const fenetreAjout = document.querySelector(".fenetreAjout");
 
-ajoutPhoto();
-retour();
-
 //FONCTIONS UTILISEES
 
 //Fonctions pour afficher/masquer les fenêtres gestion et ajout
@@ -14,15 +11,10 @@ export function cacherGestion(fenetre) {
     fenetre.style.display = "none";
     formReset();
     //suppressoin des messages d'erreur
-    const erreur = document.querySelector(".erreur");
+    const erreur = document.querySelector("#erreurMessage");
     if(erreur){
         erreur.remove();
     }
-    const erreurAjout = document.querySelector(".erreurAjout");
-    if(erreurAjout){
-        erreurAjout.remove();
-    }
-
 }
 
 // reset du formulaire 
@@ -40,6 +32,8 @@ export function initAddEventListenerGestion() {
     const boutonModifier = document.querySelector("#boutonModifier");
     boutonModifier.addEventListener("click", () => {
         afficherGestion(fenetreGestion);
+        ajoutPhoto();
+        retour();
     });
 
     // masquer si clic ailleurs ou sur X
@@ -61,7 +55,6 @@ function ajoutPhoto(){
     boutonAjout.addEventListener("click", ()=>{
         afficherGestion(fenetreAjout);
         cacherGestion(fenetreGestion);
-
     });
     // masquer si clic ailleurs ou sur X
     fenetreAjout.addEventListener("click", (event) => {
