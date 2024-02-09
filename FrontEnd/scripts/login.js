@@ -1,23 +1,26 @@
-const url ="http://localhost:5678/api/";
+import { errorMessage } from "./globals.js";
 
+// Variables
+import { url } from "./globals.js";
+const login = document.querySelector("#loginForm");
+const connectErrorLocation = document.querySelector("#login h2")
 
 //EventListener du login
-let login = document.querySelector("#loginForm");
 login.addEventListener("submit", (event) => {
   event.preventDefault();
-  loginGestion();
+  loginManagement();
 });
 
-// FONCTIONS UTILISEES
+// FUNCTIONS
 
-// Gestion du login
-async function loginGestion() {
+// This function manages the connection
+async function loginManagement() {
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
 
-  // Envoi des id avec la fonction fetch
+  // Sending ids
   try {
-    const reponse = await fetch(url + "users/login", {
+    const reponse = await fetch(`${url}users/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -25,34 +28,22 @@ async function loginGestion() {
         password: password,
       }),
     });
-    //récupération du token et enregistrement dans le local storage, retour page accueil, sinon affichage du message d'erreur
+    // Saving token and home page return or error message
     const dataReponse = await reponse.json();
     if (reponse.ok) {
       enregistrementToken(dataReponse);
       window.location.href = "index.html";
     } else {
       const errorText = "L'email ou le mot de passe n'est pas valide.";
-      messageErreur(errorText);
+      errorMessage(errorText, connectErrorLocation );
     }
   } catch (error) {
-    const errorText = "Connection impossible - " + error;
-    messageErreur(errorText);
+    const errorText = `Connection impossible - ${error}`;
+    errorMessage(errorText, connectErrorLocation);
   }
 }
 
-// Affichage d'un message d'erreur(une seule fois)
-function messageErreur(errorText) {
-  let ErreurMessage = document.getElementById("erreurMessage");
-  if (!ErreurMessage) {
-    let popup = document.querySelector("#login form");
-    ErreurMessage = document.createElement("p");
-    ErreurMessage.id = "erreurMessage";
-    popup.prepend(ErreurMessage);
-  }
-  ErreurMessage.innerText = errorText;
-}
-
-//enregistrement du token en session storage
+// This function saves token to session storage
 function enregistrementToken(dataReponse) {
   const token = dataReponse.token;
   const valeurToken = JSON.stringify(token);
