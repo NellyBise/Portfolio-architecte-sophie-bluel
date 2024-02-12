@@ -79,26 +79,26 @@
         </ul>
       </nav>
     </footer>
-    <div class="fenetreGestion">
+    <aside class="fenetreGestion" aria-hidden="true" aria-labelledby="editionTitle">
       <div class="gestion">
         <div class="nav">
           <div></div>
           <button class="close"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <h3>Galerie photo</h3>
+        <h3 id="editionTitle">Galerie photo</h3>
         <div class="miniatures">
           <!--affichage des miniatures ici-->
         </div>
         <button id="ajoutPhoto">Ajouter une photo</button>
       </div>
-    </div>
-    <div class="fenetreAjout">
+    </aside>
+    <aside class="fenetreAjout" aria-hidden="true" aria-labelledby="addTitle">
       <div class="gestion">
         <div class="nav">
           <button class="retour"><i class="fa-solid fa-arrow-left"></i></button>
           <button class="close"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <h3>Ajout photo</h3>
+        <h3 id="addTitle">Ajout photo</h3>
        <form method="post" id="form">
         <div class="ajoutPhoto">
           <div class="photoIcon"><i class="fa-regular fa-image"></i></div>
@@ -118,14 +118,14 @@
        </form>
        
       </div>
-    </div>
-    <div class="supprimer">
-      <p>Êtes-vous sûr de vouloir supprimer cette photo ?</p>
+    </aside>
+    <aside class="supprimer" aria-hidden="true" aria-labelledby="choiceTitle">
+      <p id="choiceTitle">Êtes-vous sûr de vouloir supprimer cette photo ?</p>
       <div class="choix">
         <button class="yes">OUI</button>
         <button class="no">NON</button>
       </div>
-    </div>
+    </aside>
     <script type="module" src="./scripts/main.js"></script>
     <script type="module" src="./scripts/modalDisplay.js"></script>
   </body>

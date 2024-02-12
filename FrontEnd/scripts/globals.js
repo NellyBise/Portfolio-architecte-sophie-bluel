@@ -11,7 +11,7 @@ export function errorMessage(error, errorLocation) {
       const errorDisplay = document.createElement("p");
       errorDisplay.innerText = error;
       errorDisplay.id = "errorMessage";
-      errorLocation.append(errorDisplay);
+      errorLocation.prepend(errorDisplay);
     } else {
       errorCheck.innerText = error;
     }

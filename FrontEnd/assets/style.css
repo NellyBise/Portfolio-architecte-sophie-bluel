@@ -209,12 +209,12 @@ li img {
 	height: 22px;
 }
 
-#erreurMessage {
+#errorMessage {
 	color: red;
 	text-align: center;
 	font-weight: 700;
 	font-size: 18px;
-	margin-top: 10px;
+	margin: 10px;
 }
 
 /***************** inputs ************************/
@@ -400,7 +400,7 @@ figcaption {
 	justify-content: center;
 }
 
-.barreEdition button {
+.barreEdition div {
 	border: none;
 	padding: 2em;
 	font-size: 14px;

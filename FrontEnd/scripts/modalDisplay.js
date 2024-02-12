@@ -11,12 +11,14 @@ const addWindow = document.querySelector(".fenetreAjout");
  */
 export function displayEdit(window) {
     window.style.display = "flex";
+    window.removeAttribute("aria-hidden");
 }
 export function hideEdit(window) {
     window.style.display = "none";
+    window.setAttribute("aria-hidden","true");
   formReset();
   // delete error messages
-  const error = document.querySelector("#erreurMessage");
+  const error = document.querySelector("#errorMessage");
   if (error) {
     error.remove();
   }
@@ -33,15 +35,15 @@ function formReset() {
 
 // This function initializes the management of modal windows
 export function initModalWindows() {
-  const boutonModifier = document.querySelector("#boutonModifier");
-  boutonModifier.addEventListener("click", () => {
+  const modifyButton = document.querySelector("#modifyButton");
+  modifyButton.addEventListener("click", () => {
     displayEdit(editWindow);
     addWorkWindow();
     editReturn();
   });
 
-  // masquer si clic ailleurs ou sur X
-  editWindow.addEventListener("click", (event) => {
+  // Hide by clicking outside thewindow , on the cross or pressing escape
+  editWindow.addEventListener("click", function(event) {
     if (event.target === editWindow) {
         hideEdit(editWindow);
     }
@@ -50,6 +52,11 @@ export function initModalWindows() {
   boutonClose.addEventListener("click", () => {
     hideEdit(editWindow);
   });
+  window.addEventListener ("keydown", function(e) {
+    if (e.key === "Escape" || e.key === "Esc"){
+      hideEdit(editWindow)
+    }
+  })
 }
 
 // this function displays add work window
@@ -59,7 +66,7 @@ function addWorkWindow() {
     displayEdit(addWindow);
     hideEdit(editWindow);
   });
-  // hide the window by clicking outside or on the cross
+  // hide the window by clicking outside, on the cross or pressing escape
   addWindow.addEventListener("click", (event) => {
     if (event.target === addWindow) {
         hideEdit(addWindow);
@@ -69,6 +76,11 @@ function addWorkWindow() {
   boutonClose.addEventListener("click", () => {
     hideEdit(addWindow);
   });
+  window.addEventListener ("keydown", function(e) {
+    if (e.key === "Escape" || e.key === "Esc"){
+      hideEdit(addWindow)
+    }
+  })
 }
 
 // This function returns on edit window

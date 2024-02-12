@@ -3,7 +3,6 @@ import { errorMessage } from "./globals.js";
 // Variables
 import { url } from "./globals.js";
 const login = document.querySelector("#loginForm");
-const connectErrorLocation = document.querySelector("#login h2")
 
 //EventListener du login
 login.addEventListener("submit", (event) => {
@@ -35,11 +34,11 @@ async function loginManagement() {
       window.location.href = "index.html";
     } else {
       const errorText = "L'email ou le mot de passe n'est pas valide.";
-      errorMessage(errorText, connectErrorLocation );
+      errorMessage(errorText, login);
     }
   } catch (error) {
     const errorText = `Connection impossible - ${error}`;
-    errorMessage(errorText, connectErrorLocation);
+    errorMessage(errorText, login);
   }
 }
 

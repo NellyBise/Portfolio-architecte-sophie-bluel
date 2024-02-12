@@ -11,7 +11,6 @@ import { url } from "./globals.js";
 const gallery = document.querySelector(".gallery");
 const miniatures = document.querySelector(".miniatures");
 const filterSection = document.querySelector(".filtres");
-const filterButton = document.querySelectorAll(".filtres button");
 var photo = document.getElementById("photo");
 var title = document.getElementById("title");
 var category = document.getElementById("category");
@@ -48,7 +47,7 @@ if (valeurToken) {
   deletion();
   previewPhoto();
   envoiPhoto();
-  // token deleted upon disconnection
+  // delete token upon disconnection
   suppressionToken();
 }
 
@@ -114,10 +113,9 @@ function filters() {
   filtreTous.innerText = "Tous";
   filtreTous.classList = "Tous";
   filterSection.appendChild(filtreTous);
+  // filters buttons
   for (let index = 0; index < categories.length; index++) {
-    const ficheCategorie = categories[index];
-
-    // filters buttons
+    const ficheCategorie = categories[index];  
     const filtre = document.createElement("button");
     filtre.innerText = ficheCategorie.name;
     filtre.classList = `bouton${index}`;
@@ -133,8 +131,8 @@ function filters() {
     const bouton = document.querySelector(".bouton" + index);
     bouton.addEventListener("click", function () {
       const photosFiltrees = photos.filter(function (photos) {
-        filterButton.forEach(function (boutonF) {
-          boutonF.classList.remove("actived");
+        filterButton.forEach(function (button) {
+          button.classList.remove("actived");
         });
         bouton.classList = "actived";
         return photos.categoryId === index + 1;
@@ -146,10 +144,11 @@ function filters() {
 
   // filter button "All" ("Tous")
   const boutonTous = document.querySelector(".Tous");
+  const filterButton = document.querySelectorAll(".filtres button");
   boutonTous.classList = "actived";
   boutonTous.addEventListener("click", function () {
-    filterButton.forEach(function (boutonF) {
-      boutonF.classList.remove("actived");
+    filterButton.forEach(function (button) {
+      button.classList.remove("actived");
     });
     boutonTous.classList = "actived";
     gallery.innerText = "";
@@ -164,14 +163,14 @@ function editDisplay() {
   let barre = document.createElement("div");
   barre.classList = "barreEdition";
   barre.innerHTML =
-    "<button class='bouton-filtre1'><i class='fa-regular fa-pen-to-square'></i> Mode édition</button>";
+    "<div class='bouton-filtre1'><i class='fa-regular fa-pen-to-square'></i> Mode édition</div>";
   header.prepend(barre);
 
   // Edit button
   let projets = document.querySelector("#projets");
   let modifier = document.createElement("div");
   modifier.innerHTML =
-    "<button id='boutonModifier'><i class='fa-regular fa-pen-to-square'></i> modifier</button>";
+    "<button id='modifyButton'><i class='fa-regular fa-pen-to-square'></i> modifier</button>";
   projets.appendChild(modifier);
 
   // filters deletion
@@ -225,7 +224,7 @@ function deletion() {
 
 // This function deletes the chosen work and updates the gallery display
 function supprimer(i) {
-  fetch(`${url}works/${i}`, {
+  fetch(`${url}works$/{i}`, {
     method: "DELETE",
     headers: {
       "Content-type": "application/json",
@@ -233,7 +232,6 @@ function supprimer(i) {
     },
   }).then((response) => {
     if (response.ok) {
-      //maj galeries
       galleryRefresh(photos);
     } else {
       const deleteErrorLocation = document.querySelector(".gestion h3");
