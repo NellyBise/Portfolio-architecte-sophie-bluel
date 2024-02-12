@@ -52,7 +52,7 @@
         <div id="projets">
           <h2>Mes projets</h2>
         </div>
-        <div class ="filtres"></div>
+        <div class ="filters"></div>
           <!-- affichage des filtres -->
         <div class="gallery">
           <!-- affichage des photos -->
@@ -79,47 +79,42 @@
         </ul>
       </nav>
     </footer>
-    <aside class="fenetreGestion" aria-hidden="true" aria-labelledby="editionTitle">
+    <aside class="edition" aria-hidden="true" aria-labelledby="editionTitle">
       <div class="gestion">
         <div class="nav">
+          <button class="return"><i class="fa-solid fa-arrow-left"></i></button>
           <div></div>
           <button class="close"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <h3 id="editionTitle">Galerie photo</h3>
-        <div class="miniatures">
-          <!--affichage des miniatures ici-->
+        <div class="deleteEdit">
+          <div class="miniatures">
+            <!--affichage des miniatures ici-->
+          </div>
+          <button id="addPhoto">Ajouter une photo</button>
         </div>
-        <button id="ajoutPhoto">Ajouter une photo</button>
+        <div class="addEdit">
+          <form method="post" id="form">
+            <div class="addPhoto">
+              <div class="photoIcon"><i class="fa-regular fa-image"></i></div>
+              <input type="File" name="photo" id="photo">
+              <label for="photo">+ Ajouter photo</label>
+              <p>jpg, png : 4mo max</p>
+            </div>
+            <label for="title">Titre</label>
+            <input type="text" name="title" id="title" required>
+            <label for="category">Catégorie</label>
+            <select name="category" id="category">
+              <option value=""></option>
+              <!--affichage de la liste des catégories ici-->
+            </select>
+            <hr />
+            <input type="submit" value="Valider" class="valider">
+          </form>
+        </div>
       </div>
     </aside>
-    <aside class="fenetreAjout" aria-hidden="true" aria-labelledby="addTitle">
-      <div class="gestion">
-        <div class="nav">
-          <button class="retour"><i class="fa-solid fa-arrow-left"></i></button>
-          <button class="close"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <h3 id="addTitle">Ajout photo</h3>
-       <form method="post" id="form">
-        <div class="ajoutPhoto">
-          <div class="photoIcon"><i class="fa-regular fa-image"></i></div>
-          <input type="File" name="photo" id="photo">
-          <label for="photo">+ Ajouter photo</label>
-          <p>jpg, png : 4mo max</p>
-        </div>
-        <label for="title">Titre</label>
-        <input type="text" name="title" id="title" required>
-        <label for="category">Catégorie</label>
-        <select name="category" id="category">
-          <option value=""></option>
-          <!--affichage de la liste des catégories ici-->
-        </select>
-        <hr />
-        <input type="submit" value="Valider" class="valider">
-       </form>
-       
-      </div>
-    </aside>
-    <aside class="supprimer" aria-hidden="true" aria-labelledby="choiceTitle">
+    <aside class="choice" aria-hidden="true" aria-labelledby="choiceTitle">
       <p id="choiceTitle">Êtes-vous sûr de vouloir supprimer cette photo ?</p>
       <div class="choix">
         <button class="yes">OUI</button>

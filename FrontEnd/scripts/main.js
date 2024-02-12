@@ -10,12 +10,12 @@ import { errorMessage } from "./globals.js";
 import { url } from "./globals.js";
 const gallery = document.querySelector(".gallery");
 const miniatures = document.querySelector(".miniatures");
-const filterSection = document.querySelector(".filtres");
+const filterSection = document.querySelector(".filters");
 var photo = document.getElementById("photo");
 var title = document.getElementById("title");
 var category = document.getElementById("category");
 const submitButton = document.querySelector(".valider");
-const addErrorLocation = document.querySelector(".fenetreAjout h3");
+const addErrorLocation = document.querySelector(".edition h3");
 
 // Get works and categories
 let photos = [];
@@ -144,7 +144,7 @@ function filters() {
 
   // filter button "All" ("Tous")
   const boutonTous = document.querySelector(".Tous");
-  const filterButton = document.querySelectorAll(".filtres button");
+  const filterButton = document.querySelectorAll(".filters button");
   boutonTous.classList = "actived";
   boutonTous.addEventListener("click", function () {
     filterButton.forEach(function (button) {
@@ -198,7 +198,7 @@ function deletion() {
     button.addEventListener("click", function (event) {
       event.preventDefault();
       // deletion confirm
-      const confirmationBox = document.querySelector(".supprimer");
+      const confirmationBox = document.querySelector(".choice");
       displayEdit(confirmationBox);
       const id = button.dataset.id;
       const noButton = document.querySelector(".no");
@@ -209,7 +209,7 @@ function deletion() {
       // confirm handle
       function handleConfirmation() {
         hideEdit(confirmationBox);
-        supprimer(id);
+        deleteWork(id);
         yesButton.removeEventListener("click", handleConfirmation);
         noButton.removeEventListener("click", handleCancellation);
       }
@@ -223,8 +223,8 @@ function deletion() {
 }
 
 // This function deletes the chosen work and updates the gallery display
-function supprimer(i) {
-  fetch(`${url}works$/{i}`, {
+function deleteWork(i) {
+  fetch(`${url}works/${i}`, {
     method: "DELETE",
     headers: {
       "Content-type": "application/json",
@@ -234,9 +234,8 @@ function supprimer(i) {
     if (response.ok) {
       galleryRefresh(photos);
     } else {
-      const deleteErrorLocation = document.querySelector(".gestion h3");
       const errorText = `Suppression impossible : ${response.statusText}`;
-      errorMessage(errorText, deleteErrorLocation);
+      errorMessage(errorText, addErrorLocation);
     }
   });
 }
@@ -250,14 +249,14 @@ function previewPhoto() {
     const img = document.createElement("img");
     img.classList = "preview";
     img.src = src;
-    const previewElement = document.querySelector(".ajoutPhoto");
+    const previewElement = document.querySelector(".addPhoto");
     previewElement.append(img);
   }
 }
 
 // This function checks the data before sending new works
 async function envoiPhoto() {
-  const envoi = document.querySelector(".fenetreAjout .valider");
+  const envoi = document.querySelector(".edition .valider");
   envoi.addEventListener("click", (event) => {
     event.preventDefault();
     try {
@@ -286,7 +285,7 @@ async function formPost(formData) {
     if (response.ok) {
       // gallery refresh
       galleryRefresh(photos);
-      document.querySelector(".retour").click();
+      document.querySelector(".return").click();
     } else {
       const errorMsg = `Ajout impossible : ${response.statusText}`;
       errorMessage(errorMsg, addErrorLocation);

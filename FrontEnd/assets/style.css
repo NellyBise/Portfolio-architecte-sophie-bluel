@@ -248,8 +248,8 @@ li img {
 /*******************buttons***********************/
 #contact input[type="submit"],
 #login input[type="submit"],
-#ajoutPhoto,
-.supprimer button,
+#addPhoto,
+.choice button,
 .gestion input[type="submit"],
 input[type="file"]+label {
 	font-family: 'Syne';
@@ -266,8 +266,8 @@ input[type="file"]+label {
 
 #contact input[type="submit"]:hover,
 #login input[type="submit"]:hover,
-#ajoutPhoto:hover,
-.supprimer button:hover,
+#addPhoto:hover,
+.choice button:hover,
 .gestion input[type="submit"]:hover {
 	background-color: #0E2F28;
 	cursor: pointer;
@@ -366,7 +366,7 @@ button:hover {
 	background-color: #1D6154;
 }
 
-.filtres {
+.filters {
 	margin: 51px;
 	text-align: center;
 }
@@ -446,8 +446,7 @@ figcaption {
 
 
 /************* Fenetre de gestion ou ajout ************/
-.fenetreGestion,
-.fenetreAjout {
+.edition {
 	display: none;
 	justify-content: center;
 	align-items: center;
@@ -467,6 +466,11 @@ figcaption {
 	border-radius: 10px;
 }
 
+.deleteEdit, .addEdit{
+	display:none;
+	flex-direction: column;
+}
+
 .nav {
 	display: flex;
 	justify-content: space-between;
@@ -474,7 +478,7 @@ figcaption {
 }
 
 .close,
-.retour {
+.return {
 	border: none;
 	background-color: transparent;
 	width: 24px;
@@ -482,13 +486,16 @@ figcaption {
 	margin: 26px 30px 0px 30px;
 	padding: 0px
 }
+.return{
+	display:none
+}
 
 .close i,
-.retour i {
+.return i {
 	font-size: 18px;
 }
 
-#ajoutPhoto,
+#addPhoto,
 .gestion input[type="submit"] {
 	width: 237px;
 	margin-top: 38px;
@@ -535,7 +542,7 @@ figcaption {
 	padding-right: 105px;
 }
 
-.ajoutPhoto {
+.addPhoto {
 	border-radius: 3px;
 	height: 169px;
 	background: #E8F1F6;
@@ -546,7 +553,7 @@ figcaption {
 	overflow: hidden;
 }
 
-.ajoutPhoto input {
+.addPhoto input {
 	box-shadow: none;
 }
 
@@ -572,7 +579,7 @@ input[type="file"]+label {
 	height: 169px;
 }
 
-.ajoutPhoto i {
+.addPhoto i {
 	font-size: 68px;
 	color: #B9C5CC;
 }
@@ -586,7 +593,7 @@ input[type="file"]+label {
 	height: 76px;
 }
 
-.ajoutPhoto p {
+.addPhoto p {
 	font-size: 10px;
 	margin-bottom: 19px;
 }
@@ -607,7 +614,7 @@ hr {
 
 
 /************* confirmation suppression photo ********/
-.supprimer {
+.choice {
 	display: none;
 	flex-direction: column;
 	position: fixed;
@@ -622,7 +629,7 @@ hr {
 	border: solid 1px #B3B3B3
 }
 
-.supprimer button {
+.choice button {
 	width: 20%
 }
 
