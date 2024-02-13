@@ -285,7 +285,7 @@ async function formPost(formData) {
     if (response.ok) {
       // gallery refresh
       galleryRefresh(photos);
-      document.querySelector(".return").click();
+      document.querySelector("#close").click();
     } else {
       const errorMsg = `Ajout impossible : ${response.statusText}`;
       errorMessage(errorMsg, addErrorLocation);

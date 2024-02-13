@@ -3,88 +3,7 @@
    License: none (public domain)
 */
 
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-	margin: 0;
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video {	margin: 0;
 	padding: 0;
 	border: 0;
 	font-size: 100%;
@@ -93,17 +12,7 @@ video {
 }
 
 /* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
 	display: block;
 }
 
@@ -112,20 +21,15 @@ body {
 	background-color: #FFFEF8;
 }
 
-ol,
-ul {
+ol,ul {
 	list-style: none;
 }
 
-blockquote,
-q {
+blockquote,q {
 	quotes: none;
 }
 
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
+blockquote:before, blockquote:after, q:before, q:after {
 	content: '';
 	content: none;
 }
@@ -217,8 +121,8 @@ li img {
 	margin: 10px;
 }
 
-/***************** inputs ************************/
-#contact input,#login input,.gestion input,select {
+/******************* inputs *******************/
+input, select {
 	height: 50px;
 	font-size: 14px;
 	font-weight: 400;
@@ -228,9 +132,7 @@ li img {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-#contact label,
-#login label,
-.gestion label {
+label {
 	margin: 2em 0 1em 0;
 	font-weight: 500;
 	color: #3D3D3D
@@ -241,17 +143,12 @@ li img {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-#contact input:-webkit-autofill,#login input:-webkit-autofill,.gestion input:-webkit-autofill {
+input:-webkit-autofill {
 	-webkit-box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09), 0 0 0 1000px white inset;
 }
 
-/*******************buttons***********************/
-#contact input[type="submit"],
-#login input[type="submit"],
-#addPhoto,
-.choice button,
-.gestion input[type="submit"],
-input[type="file"]+label {
+/*******************  buttons  *******************/
+input[type="submit"], #addPhoto, .choice button, input[type="file"]+label {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -264,11 +161,7 @@ input[type="file"]+label {
 	border-style: none;
 }
 
-#contact input[type="submit"]:hover,
-#login input[type="submit"]:hover,
-#addPhoto:hover,
-.choice button:hover,
-.gestion input[type="submit"]:hover {
+input[type="submit"]:hover, #addPhoto:hover, .choice button:hover {
 	background-color: #0E2F28;
 	cursor: pointer;
 }
@@ -277,7 +170,7 @@ button:hover {
 	cursor: pointer;
 }
 
-/******* Forms **********/
+/*******************  Forms  *******************/
 #contact {
 	width: 379px;
 	margin: auto;
@@ -289,14 +182,12 @@ button:hover {
 	margin-top: 150px;
 }
 
-#contact>*,
-#login>* {
+#contact>*, #login>* {
 	text-align: center;
 
 }
 
-#contact h2,
-#login h2 {
+#contact h2,#login h2 {
 	margin-bottom: 20px;
 }
 
@@ -422,7 +313,7 @@ figcaption {
 }
 
 #projets button {
-	padding-left: 31px;
+	margin-left: 30px;
 	font-size: 14px;
 	color: black;
 	font-family: 'Work sans';
@@ -455,7 +346,7 @@ figcaption {
 	height: 100%;
 	width: 100%;
 	top: 0px;
-	left:0px;
+	left: 0px;
 	text-align: center;
 }
 
@@ -466,8 +357,9 @@ figcaption {
 	border-radius: 10px;
 }
 
-.deleteEdit, .addEdit{
-	display:none;
+.deleteEdit,
+.addEdit {
+	display: none;
 	flex-direction: column;
 }
 
@@ -477,8 +369,8 @@ figcaption {
 	margin: 0px
 }
 
-.close,
-.return {
+#close,
+#return {
 	border: none;
 	background-color: transparent;
 	width: 24px;
@@ -486,12 +378,13 @@ figcaption {
 	margin: 26px 30px 0px 30px;
 	padding: 0px
 }
-.return{
-	display:none
+
+#return {
+	display: none
 }
 
-.close i,
-.return i {
+#close i,
+#return i {
 	font-size: 18px;
 }
 

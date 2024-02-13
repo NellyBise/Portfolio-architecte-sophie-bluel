@@ -1,6 +1,6 @@
 // Variables
 const editWindow = document.querySelector(".edition");
-const returnButton = document.querySelector(".return");
+const returnButton = document.querySelector("#return");
 const addEdit = document.querySelector(".addEdit");
 const deleteEdit = document.querySelector(".deleteEdit");
 
@@ -19,13 +19,7 @@ export function displayEdit(window) {
 export function hideEdit(window) {
   window.style.display = "none";
   window.setAttribute("aria-hidden", "true");
-  returnButton.style.display = "none";
-  formReset();
-  // delete error messages
-  const error = document.querySelector("#errorMessage");
-  if (error) {
-    error.remove();
-  }
+  displayReset();
 }
 
 // This function initializes the management of modal windows
@@ -42,7 +36,7 @@ export function initModalWindows() {
       hideEdit(editWindow);
     }
   });
-  const boutonClose = document.querySelector(".edition .close");
+  const boutonClose = document.querySelector("#close");
   boutonClose.addEventListener("click", () => {
     hideEdit(editWindow);
   });
@@ -53,15 +47,14 @@ export function initModalWindows() {
   });
 }
 
-// this function displays add work window
+// These functions display add work function
 function addWork() {
-  const boutonAjout = document.querySelector("#addPhoto");
-  boutonAjout.addEventListener("click", () => {
+  const addButton = document.querySelector("#addPhoto");
+  addButton.addEventListener("click", () => {
     returnButton.style.display = "flex";
     addPhotoEdit();
   });
 }
-
 function addPhotoEdit() {
   const editionTitle = document.querySelector("#editionTitle");
   editionTitle.innerText = "Ajout photo";
@@ -70,20 +63,25 @@ function addPhotoEdit() {
   editReturn();
 }
 
+// This function returns to delete function
 function editReturn() {
   returnButton.addEventListener("click", () => {
-    formReset();
+    displayReset();
     displayEdit(editWindow);
-    returnButton.style.display = "none";
-    addWork();
   });
 }
 
-// This function resets the form
-function formReset() {
+// This function resets the display to edit function and clean the form and errors
+function displayReset() {
   document.getElementById("form").reset();
   const preview = document.querySelector(".preview");
   if (preview) {
     preview.remove();
+  }
+  returnButton.style.display = "none";
+  editionTitle.innerText = "Galerie photo";
+  const error = document.querySelector("#errorMessage");
+  if (error) {
+    error.remove();
   }
 }
