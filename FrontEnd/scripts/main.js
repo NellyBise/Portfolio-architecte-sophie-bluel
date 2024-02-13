@@ -1,8 +1,4 @@
-import {
-  initModalWindows,
-  displayEdit,
-  hideEdit,
-} from "./modalDisplay.js";
+import { initModalWindows, displayEdit, hideEdit } from "./modalDisplay.js";
 
 import { errorMessage } from "./globals.js";
 
@@ -15,7 +11,6 @@ var photo = document.getElementById("photo");
 var title = document.getElementById("title");
 var category = document.getElementById("category");
 const submitButton = document.querySelector(".valider");
-const addErrorLocation = document.querySelector(".edition h3");
 
 // Get works and categories
 let photos = [];
@@ -25,7 +20,7 @@ try {
   photos = await reponse.json();
 } catch (error) {
   const errorText = `Affichage des projets impossible - ${error}`;
-  errorMessage(errorText, filterSection);
+  errorMessage(errorText, "displayError");
 }
 
 // galleries creation
@@ -44,7 +39,7 @@ if (valeurToken) {
   editDisplay();
   initModalWindows();
   // add or delete functions
-  deletion();
+  removeWork();
   previewPhoto();
   envoiPhoto();
   // delete token upon disconnection
@@ -66,45 +61,36 @@ fillCheck();
  */
 function genererPhotos(photos, location) {
   for (let i = 0; i < photos.length; i++) {
-    const fichePhoto = photos[i];
-
-    // tags creation
-    const figure = document.createElement("figure");
-    figure.classList = `figure${photos[i].id}`;
-    figure.dataset.id = photos[i].id;
-    const imagePhoto = document.createElement("img");
-    imagePhoto.src = fichePhoto.imageUrl;
-    imagePhoto.alt = fichePhoto.title;
-    const trashButton = document.createElement("button");
-    trashButton.classList = "trashButton";
-    trashButton.dataset.id = photos[i].id;
-    trashButton.innerHTML = "<i class='fa-solid fa-trash-can'></i>";
-    const titrePhoto = document.createElement("figcaption");
-    titrePhoto.innerText = fichePhoto.title;
-
-    // elements connection
-    location.appendChild(figure);
-    figure.appendChild(imagePhoto);
-
-    // display adapt (home page or modal window)
-    if (location === gallery) {
-      figure.appendChild(titrePhoto);
-    } else {
-      figure.append(trashButton);
-    }
+    genererPhoto(photos, location, i);
   }
 }
 
-// This function refreshes the galleries
-async function galleryRefresh(photos) {
-  const reponse = await fetch(`${url}works`);
-  photos = await reponse.json();
-  gallery.innerText = "";
-  genererPhotos(photos, gallery);
-  miniatures.innerText = "";
-  genererPhotos(photos, miniatures);
-  // restart deletion function
-  deletion();
+function genererPhoto(photos, location, i) {
+  const fichePhoto = photos[i];
+  // tags creation
+  const figure = document.createElement("figure");
+  figure.classList = `figure${photos[i].id}`;
+  figure.dataset.id = photos[i].id;
+  const imagePhoto = document.createElement("img");
+  imagePhoto.src = fichePhoto.imageUrl;
+  imagePhoto.alt = fichePhoto.title;
+  const trashButton = document.createElement("button");
+  trashButton.classList = "trashButton";
+  trashButton.dataset.id = photos[i].id;
+  trashButton.innerHTML = "<i class='fa-solid fa-trash-can'></i>";
+  const titrePhoto = document.createElement("figcaption");
+  titrePhoto.innerText = fichePhoto.title;
+
+  // elements connection
+  location.appendChild(figure);
+  figure.appendChild(imagePhoto);
+
+  // display adapt (home page or modal window)
+  if (location === gallery) {
+    figure.appendChild(titrePhoto);
+  } else {
+    figure.append(trashButton);
+  }
 }
 
 // This function create categories filters and form options creation
@@ -115,7 +101,7 @@ function filters() {
   filterSection.appendChild(filtreTous);
   // filters buttons
   for (let index = 0; index < categories.length; index++) {
-    const ficheCategorie = categories[index];  
+    const ficheCategorie = categories[index];
     const filtre = document.createElement("button");
     filtre.innerText = ficheCategorie.name;
     filtre.classList = `bouton${index}`;
@@ -147,7 +133,7 @@ function filters() {
   const filterButton = document.querySelectorAll(".filters button");
   boutonTous.classList = "actived";
   boutonTous.addEventListener("click", function () {
-    filterButton.forEach(function (button) {
+    filterButton.forEach((button) => {
       button.classList.remove("actived");
     });
     boutonTous.classList = "actived";
@@ -173,7 +159,7 @@ function editDisplay() {
     "<button id='modifyButton'><i class='fa-regular fa-pen-to-square'></i> modifier</button>";
   projets.appendChild(modifier);
 
-  // filters deletion
+  // filters remove
   filterSection.innerHTML = "<br>";
 
   // login to logout
@@ -192,32 +178,24 @@ function suppressionToken() {
 }
 
 // This function delete a work by clicking on the trash button
-function deletion() {
+function removeWork() {
   const deleteButtons = document.querySelectorAll(".trashButton");
-  deleteButtons.forEach((button) => {
+  deleteButtons.forEach(function (button) {
     button.addEventListener("click", function (event) {
       event.preventDefault();
-      // deletion confirm
+      // remove confirm
       const confirmationBox = document.querySelector(".choice");
       displayEdit(confirmationBox);
       const id = button.dataset.id;
       const noButton = document.querySelector(".no");
       const yesButton = document.querySelector(".yes");
-      yesButton.addEventListener("click", handleConfirmation);
-      noButton.addEventListener("click", handleCancellation);
-
-      // confirm handle
-      function handleConfirmation() {
+      yesButton.addEventListener("click", function(){
         hideEdit(confirmationBox);
         deleteWork(id);
-        yesButton.removeEventListener("click", handleConfirmation);
-        noButton.removeEventListener("click", handleCancellation);
-      }
-      function handleCancellation() {
+      });
+      noButton.addEventListener("click", function(){
         hideEdit(confirmationBox);
-        yesButton.removeEventListener("click", handleConfirmation);
-        noButton.removeEventListener("click", handleCancellation);
-      }
+      });
     });
   });
 }
@@ -232,10 +210,13 @@ function deleteWork(i) {
     },
   }).then((response) => {
     if (response.ok) {
-      galleryRefresh(photos);
+      const img = document.querySelectorAll(`.figure${i}`);
+      img.forEach((image) => {
+        image.remove();
+      });
     } else {
       const errorText = `Suppression impossible : ${response.statusText}`;
-      errorMessage(errorText, addErrorLocation);
+      errorMessage(errorText, "modalError");
     }
   });
 }
@@ -262,18 +243,19 @@ async function envoiPhoto() {
     try {
       formatCheck(photo.files[0]);
       sizeCheck(photo.files[0]);
+      titleCheck(title.value);
       const formData = new FormData();
       formData.append("image", photo.files[0]);
       formData.append("title", title.value);
       formData.append("category", category.value);
       formPost(formData);
     } catch (error) {
-      errorMessage(error, addErrorLocation);
+      errorMessage(error, "modalError");
     }
   });
 }
 
-// This function sends the new work and refreshes galleries
+// This function sends the new work and add it to galleries
 async function formPost(formData) {
   await fetch(`${url}works`, {
     method: "POST",
@@ -281,15 +263,22 @@ async function formPost(formData) {
       Authorization: `Bearer ${token}`,
     },
     body: formData,
-  }).then((response) => {
-    if (response.ok) {
-      // gallery refresh
-      galleryRefresh(photos);
-      document.querySelector("#close").click();
-    } else {
+  }).then(async (response) => {
+    if (!response.ok) {
       const errorMsg = `Ajout impossible : ${response.statusText}`;
-      errorMessage(errorMsg, addErrorLocation);
+      errorMessage(errorMsg, "modalError");
     }
+
+    // Get the new work and add it to galleries
+    const reponse = await fetch(`${url}works`);
+    const photos = await reponse.json();
+    const ind = photos.length - 1;
+    genererPhoto(photos, gallery, ind);
+    genererPhoto(photos, miniatures, ind);
+
+    // Restart delete function
+    removeWork();
+    document.querySelector("#close").click();
   });
 }
 
@@ -316,5 +305,10 @@ function formatCheck(photo) {
   const types = ["image/jpg", "image/jpeg", "image/png"];
   if (!types.includes(photo.type)) {
     throw new Error("L'image n'est pas au bon format.");
+  }
+}
+function titleCheck(title) {
+  if (title.length < 4) {
+    throw new Error("Le titre de la photo est trop court.");
   }
 }

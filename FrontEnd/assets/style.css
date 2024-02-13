@@ -81,9 +81,9 @@ h2 {
 }
 
 .gestion h3 {
-	font-size: 30px;
+	font-size: 26px;
 	margin-top: 10px;
-	margin-bottom: 46px;
+	margin-bottom: 6px;
 }
 
 nav ul {
@@ -113,12 +113,16 @@ li img {
 	height: 22px;
 }
 
-#errorMessage {
+.errorMessage {
 	color: red;
 	text-align: center;
 	font-weight: 700;
 	font-size: 18px;
 	margin: 10px;
+	height: 30px
+}
+#displayError {
+	height: auto;
 }
 
 /******************* inputs *******************/
@@ -129,7 +133,7 @@ input, select {
 	color: #444444;
 	padding-left: 16px;
 	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09), 0 0 0 1000px white inset;
 }
 
 label {
@@ -140,11 +144,7 @@ label {
 
 #contact textarea {
 	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-}
-
-input:-webkit-autofill {
-	-webkit-box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09), 0 0 0 1000px white inset;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09), 0 0 0 1000px white inset;
 }
 
 /*******************  buttons  *******************/
@@ -153,12 +153,16 @@ input[type="submit"], #addPhoto, .choice button, input[type="file"]+label {
 	font-weight: 700;
 	color: white;
 	background-color: #1D6154;
-	margin: 2em auto;
+	margin: 38px auto 45px auto;
 	width: 180px;
 	text-align: center;
 	border-radius: 60px;
 	height: 36px;
 	border-style: none;
+	box-shadow: none;
+}
+#loginForm input[type="submit"]{
+	margin-bottom: 28px;
 }
 
 input[type="submit"]:hover, #addPhoto:hover, .choice button:hover {
@@ -179,16 +183,11 @@ button:hover {
 #login {
 	width: 379px;
 	margin: auto;
-	margin-top: 150px;
+	margin-top: 120px;
 }
 
 #contact>*, #login>* {
 	text-align: center;
-
-}
-
-#contact h2,#login h2 {
-	margin-bottom: 20px;
 }
 
 #contact form,
@@ -198,6 +197,9 @@ button:hover {
 	margin-top: 30px;
 	display: flex;
 	flex-direction: column;
+}
+.gestion form{
+	margin: 0px;
 }
 
 .oubli {
@@ -244,7 +246,7 @@ button:hover {
 	border-radius: 60px;
 	border: solid 1px #1D6154;
 	padding: 9px;
-	margin: 0 5px 0 5px;
+	margin: 12px 5px;
 }
 
 #portfolio button:hover {
@@ -258,7 +260,7 @@ button:hover {
 }
 
 .filters {
-	margin: 51px;
+	margin: 39px;
 	text-align: center;
 }
 
@@ -272,11 +274,17 @@ button:hover {
 
 .gallery img {
 	width: 100%;
+	object-fit: cover;
+	height: 95%;
 }
 
 figcaption {
 	font-size: 13px;
 	margin-top: 7px;
+}
+
+#contact h2{
+	margin-bottom: 9px;
 }
 
 /*************** Edition mode ********************/
@@ -313,7 +321,7 @@ figcaption {
 }
 
 #projets button {
-	margin-left: 30px;
+	margin: 0px 21px;
 	font-size: 14px;
 	color: black;
 	font-family: 'Work sans';
@@ -352,15 +360,19 @@ figcaption {
 
 .gestion {
 	width: 630px;
-	height: 688px;
 	background: white;
 	border-radius: 10px;
+	/************ à mettre en place pour un défilement de la galerie 
+	max-height: 688px;
+	overflow:auto;
+	******************/
 }
 
 .deleteEdit,
 .addEdit {
 	display: none;
 	flex-direction: column;
+	padding: 0px 105px;
 }
 
 .nav {
@@ -385,7 +397,7 @@ figcaption {
 
 #close i,
 #return i {
-	font-size: 18px;
+	font-size: 20px;
 }
 
 #addPhoto,
@@ -400,14 +412,12 @@ figcaption {
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	column-gap: 9px;
 	row-gap: 10px;
-	margin-left: 105px;
-	margin-right: 105px;
-	padding-bottom: 48.3px;
-	border-bottom: solid 1px #B3B3B3;
 }
 
 .miniatures img {
 	width: 100%;
+	object-fit: cover;
+    height: 85%;
 }
 
 [class^="trashButton"] {
@@ -418,9 +428,11 @@ figcaption {
 	border-radius: 2px;
 	border: none;
 	position: relative;
-	top: -80%;
-	left: 30%;
-	padding: 0px;
+	top: -82%;
+	left: 72%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 [class^="trashButton"] i {
@@ -430,10 +442,6 @@ figcaption {
 
 
 /**********partie ajout photo***********/
-.gestion form {
-	padding-left: 105px;
-	padding-right: 105px;
-}
 
 .addPhoto {
 	border-radius: 3px;
@@ -511,10 +519,9 @@ hr {
 	display: none;
 	flex-direction: column;
 	position: fixed;
-	height: 10%;
-	width: 40%;
-	top: 28%;
-	left: 28%;
+	width: 38%;
+	top: 35%;
+	left: 28.3%;
 	text-align: center;
 	background-color: white;
 	border-radius: 10px;
@@ -523,7 +530,8 @@ hr {
 }
 
 .choice button {
-	width: 20%
+	width: 20%;
+	margin: 1em;
 }
 
 /****************** Footer ****************/

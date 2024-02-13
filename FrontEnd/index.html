@@ -51,9 +51,11 @@
       <section id="portfolio">
         <div id="projets">
           <h2>Mes projets</h2>
+      
         </div>
         <div class ="filters"></div>
           <!-- affichage des filtres -->
+           <div class="errorMessage" id="displayError"></div>
         <div class="gallery">
           <!-- affichage des photos -->
         </div>
@@ -80,7 +82,7 @@
       </nav>
     </footer>
 
-    <!----------------      Modal windows    ---------------->
+    <!--           Modal windows         -->
     <aside class="edition" aria-hidden="true" aria-labelledby="editionTitle">
       <div class="gestion">
         <div class="nav">
@@ -89,10 +91,12 @@
           <button id="close"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <h3 id="editionTitle">Galerie photo</h3>
+        <div class="errorMessage" id="modalError"> </div>
         <div class="deleteEdit">
           <div class="miniatures">
             <!--affichage des miniatures ici-->
           </div>
+          <hr>
           <button id="addPhoto">Ajouter une photo</button>
         </div>
         <div class="addEdit">
@@ -110,7 +114,7 @@
               <option value=""></option>
               <!--affichage de la liste des catégories ici-->
             </select>
-            <hr />
+            <hr>
             <input type="submit" value="Valider" class="valider">
           </form>
         </div>

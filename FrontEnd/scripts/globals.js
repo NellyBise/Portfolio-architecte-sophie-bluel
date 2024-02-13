@@ -6,13 +6,6 @@ export const url = "http://localhost:5678/api/";
 
 // This function displays error messages (once)
 export function errorMessage(error, errorLocation) {
-    const errorCheck = document.querySelector("#errorMessage");
-    if (!errorCheck) {
-      const errorDisplay = document.createElement("p");
-      errorDisplay.innerText = error;
-      errorDisplay.id = "errorMessage";
-      errorLocation.prepend(errorDisplay);
-    } else {
-      errorCheck.innerText = error;
-    }
+    const errorDisplay = document.getElementById(errorLocation)
+    errorDisplay.innerText = error;
   }

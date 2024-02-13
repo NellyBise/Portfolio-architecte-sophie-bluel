@@ -32,13 +32,16 @@ async function loginManagement() {
     if (reponse.ok) {
       enregistrementToken(dataReponse);
       window.location.href = "index.html";
-    } else {
-      const errorText = "L'email ou le mot de passe n'est pas valide.";
-      errorMessage(errorText, login);
+    } else if (reponse.status === 404) {
+      const errorText = "L'email n'est pas valide.";
+      errorMessage(errorText, "loginError") 
+    }else{
+      const errorText = "Le mot de passe n'est pas valide.";
+      errorMessage(errorText, "loginError")
     }
   } catch (error) {
-    const errorText = `Connection impossible - ${error}`;
-    errorMessage(errorText, login);
+    const errorText = "Connexion impossible : pas de réponse.";
+    errorMessage(errorText, "loginError") 
   }
 }
 
