@@ -1,5 +1,8 @@
 import { errorMessage } from "./globals.js";
 
+
+
+
 // Variables
 import { url } from "./globals.js";
 const login = document.querySelector("#loginForm");
