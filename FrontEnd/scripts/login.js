@@ -1,10 +1,5 @@
-import { errorMessage } from "./globals.js";
-
-
-
-
 // Variables
-import { url } from "./globals.js";
+const url = "http://localhost:5678/api/";
 const login = document.querySelector("#loginForm");
 
 //EventListener du login
@@ -53,4 +48,10 @@ function enregistrementToken(dataReponse) {
   const token = dataReponse.token;
   const valeurToken = JSON.stringify(token);
   window.sessionStorage.setItem("token", valeurToken);
+}
+
+// This function displays error messages (once)
+function errorMessage(error, errorLocation) {
+  const errorDisplay = document.getElementById(errorLocation)
+  errorDisplay.innerText = error;
 }

@@ -128,12 +128,14 @@ li img {
 /******************* inputs *******************/
 input, select {
 	height: 50px;
+	font-family: 'Work Sans';
 	font-size: 14px;
 	font-weight: 400;
 	color: #444444;
 	padding-left: 16px;
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09), 0 0 0 1000px white inset;
+	border: solid white 1px;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	background-color: white;
 }
 
 label {
@@ -144,7 +146,8 @@ label {
 
 #contact textarea {
 	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09), 0 0 0 1000px white inset;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	background-color: white;
 }
 
 /*******************  buttons  *******************/
@@ -320,7 +323,7 @@ figcaption {
 	font-weight: 700;
 }
 
-#projets button {
+#projects button {
 	margin: 0px 21px;
 	font-size: 14px;
 	color: black;
@@ -328,13 +331,13 @@ figcaption {
 	border: none;
 }
 
-#projets button:hover {
+#projects button:hover {
 	background: none;
 	color: black;
 	cursor: pointer;
 }
 
-#projets {
+#projects {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -462,6 +465,7 @@ input[type="file"] {
 	height: 0;
 	width: 0;
 	overflow: hidden;
+	border: solid 1px #E8F1F6;
 }
 
 input[type="file"]+label {
@@ -506,6 +510,8 @@ input[type="file"]+label {
 select {
 	border-right: inset 20px transparent;
 }
+
+
 
 hr {
 	border: solid 1px #B3B3B3;
