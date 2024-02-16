@@ -52,8 +52,10 @@ try {
 
   // If a token is registered, home page modifications
   let valeurToken = window.sessionStorage.getItem("token");
+
   if (valeurToken !== null) {
     token = JSON.parse(valeurToken);
+    console.log(token)
     editDisplay();
     initModalWindows();
     // Add or delete functions

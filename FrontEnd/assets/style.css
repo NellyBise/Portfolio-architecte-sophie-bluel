@@ -282,7 +282,7 @@ button:hover {
 .gallery img {
 	width: 100%;
 	object-fit: cover;
-	height: 95%;
+	height: 407px;
 }
 
 figcaption {
@@ -368,9 +368,7 @@ figcaption {
 .gestion {
 	width: 630px;
 	background: white;
-	border-radius: 10px;
-	max-height: 700px;
-	overflow-y:auto;
+	border-radius: 10px;	
 }
 
 .deleteEdit,
@@ -417,12 +415,16 @@ figcaption {
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	column-gap: 9px;
 	row-gap: 10px;
+	min-height: 366px;
+	max-height: 400px;
+	overflow-y:auto;
+	scrollbar-width: thin;
 }
 
 .miniatures img {
 	width: 100%;
 	object-fit: cover;
-    height: 85%;
+    height: 102.57px;
 }
 
 [class^="trashButton"] {
