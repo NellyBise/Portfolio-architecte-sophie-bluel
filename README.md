@@ -1,6 +1,6 @@
-# Portfolio de l' architecte Sophie Bluel
+# Portfolio de l'architecte Sophie Bluel
 
-Code du projet 6 d'intégrateur web: créez une page dynamique avec JavaScript
+Code du projet 6 d'intégrateur web : créez une page dynamique avec JavaScript
 
 
 ## Information pour le lancer le code
