@@ -415,10 +415,9 @@ figcaption {
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	column-gap: 9px;
 	row-gap: 10px;
-	min-height: 366px;
 	max-height: 400px;
 	overflow-y:auto;
-	scrollbar-width: thin;
+	scrollbar-width: none;
 }
 
 .miniatures img {

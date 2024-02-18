@@ -38,7 +38,6 @@ try {
     photos = await workResponse.json();
     const categoriesResponse = await fetch(`${url}categories`);
     categories = await categoriesResponse.json();
-    console.log(workResponse)
   } catch (error) {
     const errorText = `Affichage des projets impossible : ${error.statusText}`;
     errorMessage(errorText, "displayError");
@@ -55,7 +54,6 @@ try {
 
   if (valeurToken !== null) {
     token = JSON.parse(valeurToken);
-    console.log(token)
     editDisplay();
     initModalWindows();
     // Add or delete functions
@@ -264,7 +262,8 @@ async function sendPhoto() {
       formData.append("category", category.value);
       formPost(formData);
     } catch (error) {
-      errorMessage(error, "modalError");
+      console.log(error)
+      errorMessage(error.message, "modalError");
     }
   });
 }
