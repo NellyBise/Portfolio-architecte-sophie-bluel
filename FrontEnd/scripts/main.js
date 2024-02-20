@@ -277,23 +277,14 @@ async function formPost(formData) {
     },
     body: formData,
   });
+  const newPhoto = await addResponse.json()
   if (!addResponse.ok) {
     const errorMsg = `Ajout impossible : ${addResponse.statusText}`;
       errorMessage(errorMsg, "modalError");
       return
   }
-    // Get the new work and add it to galleries
-    try {
-      const reponse = await fetch(`${url}works`);
-      photos = await reponse.json();
-    } catch (error) {
-      const errorMsg = `Ajout effectué, affichage impossible : ${error.statusText}`;
-      errorMessage(errorMsg, "modalError");
-      return
-    }
-    const ind = photos.length - 1;
-    generatePhoto(photos[ind], gallery);
-    generatePhoto(photos[ind], miniatures);
+    generatePhoto(newPhoto, gallery);
+    generatePhoto(newPhoto, miniatures);
 
     // Restart delete function
     removeWork();
