@@ -124,24 +124,24 @@ function filters() {
     const ficheCategorie = categories[index];
     const filter = document.createElement("button");
     filter.innerText = ficheCategorie.name;
-    filter.classList = `button${index}`;
+    filter.classList = `button${ficheCategorie.id}`;
     filterSection.appendChild(filter);
 
     // form options
     const option = document.createElement("option");
-    option.value = index + 1;
+    option.value = ficheCategorie.id;
     option.innerText = ficheCategorie.name;
     category.appendChild(option);
 
     // initialize filtration on click
-    const button = document.querySelector(".button" + index);
+    const button = document.querySelector(".button" + ficheCategorie.id);
     button.addEventListener("click", function () {
       const filteredPhotos = photos.filter(function (photos) {
         filterButton.forEach(function (button) {
           button.classList.remove("actived");
         });
         button.classList = "actived";
-        return photos.categoryId === index + 1;
+        return photos.categoryId === ficheCategorie.id;
       });
       gallery.innerText = "";
       generatePhotos(filteredPhotos, gallery);
@@ -253,7 +253,6 @@ async function sendPhoto() {
   submitButton.addEventListener("click", (event) => {
     event.preventDefault();
     try {
-      formatCheck(photo.files[0]);
       sizeCheck(photo.files[0]);
       titleCheck(title.value);
       const formData = new FormData();
@@ -262,7 +261,6 @@ async function sendPhoto() {
       formData.append("category", category.value);
       formPost(formData);
     } catch (error) {
-      console.log(error)
       errorMessage(error.message, "modalError");
     }
   });
@@ -307,13 +305,9 @@ function fillCheck() {
 // These functions check size and format of the image
 function sizeCheck(photo) {
   if (photo.size / 1024 > 4096) {
-    throw new Error("La taille de l'image est trop grande.");
-  }
-}
-function formatCheck(photo) {
-  const types = ["image/jpg", "image/jpeg", "image/png"];
-  if (!types.includes(photo.type)) {
-    throw new Error("L'image n'est pas au bon format.");
+    const preview = document.querySelector(".preview");
+    preview.remove();
+    throw new Error("Image trop grande, veuillez en choisir une autre.");
   }
 }
 function titleCheck(title) {

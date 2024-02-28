@@ -30,15 +30,12 @@ async function loginManagement() {
     if (reponse.ok) {
       enregistrementToken(dataReponse);
       window.location.href = "index.html";
-    } else if (reponse.status === 404) {
-      const errorText = "L'email n'est pas valide.";
-      errorMessage(errorText, "loginError") 
     }else{
-      const errorText = "Le mot de passe n'est pas valide.";
+      const errorText = "email ou mot de passe non valide";
       errorMessage(errorText, "loginError")
     }
   } catch (error) {
-    const errorText = "Connexion impossible : pas de réponse.";
+    const errorText = "Connexion impossible : pas de réponse";
     errorMessage(errorText, "loginError") 
   }
 }
