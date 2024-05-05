@@ -1,9 +1,23 @@
-# Portfolio de l'architecte Sophie Bluel
+# Sophie Bluel
+Portfolio d'une architecte d'intérieur prévoyant la connexion et la gestion des photos.
 
-Code du projet 6 d'intégrateur web : créez une page dynamique avec JavaScript
+**Projet d'études :** création d'une site dynamique avec **JavaScript**, HTML et CSS.
 
 
-## Information pour le lancer le code
+## Comment lancer le code
+- Depuis le backend, lancer la commande `npm install` pour installer les dépendances du projet
 
-Se rendre dans le backend et suivre les instructions du fichier ReadMe.
+- Une fois les dépendances installées lancez le projet avec la commande `npm start`
+
+Compte de test pour Sophie Bluel :
+
+```
+email: sophie.bluel@test.tld
+
+password: S0phie 
+```
+Lien pour voir la documentation [documentation Swagger](http://localhost:5678/api-docs/)
+
+Pour lire la documentation, utiliser Chrome ou Firefox
+
 
